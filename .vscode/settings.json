@@ -27,5 +27,6 @@
         "system_error": "cpp",
         "type_traits": "cpp",
         "typeinfo": "cpp"
-    }
+    },
+    "cmake.sourceDirectory": "${workspaceFolder}/SDL2-2.24.0/test"
 }
