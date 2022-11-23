@@ -173,22 +173,7 @@ void Scene::initializeGraphics(void){
     setWindow(window);
 } // end initializeGraphics
 
-
 void Scene::start(){
-// start the main game loop
-bool isRunning = true;
-while(isRunning){
-    while (SDL_PollEvent(getEvent())){
-        switch(getEvent()->type){
-        case SDL_QUIT:
-            isRunning = false;
-            break;
-        } //end switch
-    } // end while
-
-
-
-} //end while
 
 } // end start
 

@@ -12,14 +12,19 @@ Sprite::Sprite(Scene* scene, const char* file){
     this->position_ = new std::unordered_map<std::string, int>;
     this->deltaPosition_ = new std::unordered_map<std::string, int>;
     this->deltaVelocity_ = new std::unordered_map<std::string, int>;
+    this->rect_ = new SDL_Rect();
 
     // initialize map and set default size;
     this->size_->insert({"width", getImage()->w});
     this->size_->insert({"height", getImage()->h});
+    rect_->w = this->size_->at("width");
+    rect_->h = this->size_->at("height");
 
     // initialize map and set default position;
     this->position_->insert({"xPos", 0});
     this->position_->insert({"yPos", 0});
+    rect_->x = this->position_->at("xPos");
+    rect_->y = this->position_->at("yPos");
 
     // initialize map and set default deltaPosition;
     this->deltaPosition_->insert({"dx", 0});
@@ -68,6 +73,8 @@ std::unordered_map<std::string, int>* Sprite::getSize(void){
 void Sprite::setSize(int width, int height){
     this->size_->at("width") = width;
     this->size_->at("height") = height;
+    this->rect_->w = this->size_->at("width");
+    this->rect_->h = this->size_->at("height");
 
 } // end setSize
 
@@ -80,16 +87,8 @@ std::unordered_map<std::string, int>* Sprite::getPosition(void){
 void Sprite::setPosition(int xPos, int yPos){
     this->position_->at("xPos") = xPos;
     this->position_->at("yPos") = yPos;
-
-    /**
-    SDL_Rect *newRect = new SDL_Rect();
-    newRect->h = getImage()->clip_rect.h;
-    newRect->w = getImage()->clip_rect.h;
-    newRect->x = getPosition()->at("xPos");
-    newRect->y = getPosition()->at("yPos");
-
-    SDL_SetClipRect(getImage(), newRect);
-    */
+    this->rect_->x = this->position_->at("xPos");
+    this->rect_->y = this->position_->at("yPos");
 } // end setPosition
 
 
@@ -169,7 +168,7 @@ void Sprite::draw(){
     SDL_Texture* texture = SDL_CreateTextureFromSurface(getScene()->getRenderer(), getImage());
 
     SDL_RenderClear(getScene()->getRenderer());
-    SDL_RenderCopy(getScene()->getRenderer(), texture, &getImage()->clip_rect, &getImage()->clip_rect); //this line contains potential for using a sprite sheet
+    SDL_RenderCopy(getScene()->getRenderer(), texture, &getImage()->clip_rect, this->rect_); //this line contains potential for using a sprite sheet
     SDL_RenderPresent(getScene()->getRenderer());
 
 } // end draw

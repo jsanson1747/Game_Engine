@@ -21,6 +21,7 @@ class Sprite{
         std::unordered_map<std::string, int>* deltaVelocity_; // change in velocity (acceleration)
         Scene* scene_;
         std::string boundAction_; // what the sprite does when it detects a boundry
+        SDL_Rect *rect_;
 
         //internal helper method
         void vectorProject();
