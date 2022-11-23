@@ -35,13 +35,13 @@ int main(int argv, char** args){
     const char* image_path = "small dude.png";
     Sprite* sprite = new Sprite(scene, image_path);
     
-    //float counter = 1;
-    //while(counter < 300){
-    //   sprite->setPosition(50 + counter, 50 + counter);
-    //    sprite->setSize(75, 75);
-    //    sprite->draw();
-    //    counter += 0.1;
-    //}
+    float counter = 1;
+    while(counter < 300){
+       sprite->setPosition(50 + counter, 50 + counter);
+        sprite->setSize(75, 75);
+        sprite->draw();
+        counter += 0.1;
+    }
 
     
     //sprite->setPosition(50, 50);
